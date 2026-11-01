@@ -2,7 +2,7 @@
 
 Give your coding agent this repository and the following instruction:
 
-> Read `skills/benchcoding-create/SKILL.md` and follow it to create an internal leaderboard for my objective. Use the existing repository context where available. Establish the evaluation contract, seed contributor instructions, and prepare GitHub Actions or GitLab CI validation. Ask me for the objective, owner, destination, and resource limits if they are missing. Make the setup reviewable and distinguish a local scaffold from a working, independently validated board.
+> Read `skills/benchcoding-create/SKILL.md` and follow it to create an internal leaderboard for my objective. Use the existing repository context where available. Build and test the infrastructure: validation orchestration, evidence storage, budget tracking, a generated board, and GitHub Actions or GitLab CI integration. Create a collaboration guide and adapt the contributor and maintainer skills so other agents can join using the generated repository alone. Ask me for the objective, owner, destination, and resource limits if they are missing. Propose a validation flow and ask for my help where representative inputs, acceptance rules, or human review decisions are unclear; continue independent setup work while those questions are open. Make the setup reviewable and distinguish a local scaffold from a working, independently validated board.
 
 You can point an agent at this file without installing a plugin. It must fetch the linked skill and its referenced files, not just this page. For local skill installation, preserve the three sibling skill directories and their relative paths. These instructions are intended for any coding harness that can read Markdown, edit repositories, and operate the selected hosting provider.
 
@@ -20,8 +20,9 @@ A board belongs to a named engineer, with a team responsible for maintenance. Ot
 
 - An objective contract defining metrics, acceptance gates, budgets, allowed changes, and ownership.
 - A reproducible baseline and a public development evaluation.
-- A trusted validation workflow, separate from candidate-controlled configuration.
-- A seeded `AGENTS.md`, experiment/submission templates, and submission tracking.
+- Implemented validation orchestration, evidence storage, budget tracking, and CI integration, separate from candidate-controlled configuration.
+- A documented validation flow, with the human owner resolving any missing acceptance criteria or review decisions.
+- A collaboration guide, seeded `AGENTS.md`, adapted contributor and maintainer skills, experiment/submission templates, and submission tracking.
 - Versioned result records and a generated leaderboard that separates reported, verified, and accepted results.
 - Operating instructions for review, integration, baseline changes, and reruns.
 

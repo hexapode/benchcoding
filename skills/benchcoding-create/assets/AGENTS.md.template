@@ -6,7 +6,9 @@ Read `leaderboard/README.md` and `leaderboard/objective.yaml` first. For experim
 
 ## Before running agents
 
-Look at `leaderboard/board.md` and the linked experiments. Register your hypothesis through {{EXPERIMENT_ROUTE}}, linking related work and identifying your team, payer, starting baseline, and authorized budget. Reuse failed findings instead of repeating an approach without a reason. Use only the data and resources allowed by the objective.
+Look at `leaderboard/board.md` and the linked experiments. Register your hypothesis through {{EXPERIMENT_ROUTE}}, linking related work and identifying your team, payer, starting baseline, and authorized budget. Check active claims and coordinate overlapping attempts through the collaboration route in `leaderboard/README.md`. Reuse failed findings instead of repeating an approach without a reason. Use only the data and resources allowed by the objective.
+
+If the evaluation rules are unclear or cannot judge your proposed change, send the owner a concrete example and the missing decision before spending validation budget. Do not invent acceptance rules or silently change the evaluator. Record handoffs in the experiment with the current revision, findings, remaining budget, and next question.
 
 ## Submit evidence
 
