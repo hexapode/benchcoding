@@ -41,7 +41,7 @@ jobs:
           git -C trusted checkout --detach FETCH_HEAD
       - name: Require completed evaluator integration
         run: |
-          echo 'SETUP REQUIRED: implement and verify isolated evaluation, durable evidence, and budget reservation.' >&2
+          echo 'SETUP REQUIRED: implement and verify the selected evaluation adapters, durable state/evidence, and budget accounting.' >&2
           exit 1
       # After setup, remove the guard above and enable this controller step.
       # - name: Evaluate admitted submission
@@ -50,3 +50,10 @@ jobs:
       #     SUBMISSION_ID: ${{ inputs.submission_id }}
       #   run: python3 validation/controller.py --submission-id "$SUBMISSION_ID" --output result.json
       # Publish only through the separately configured trusted ingestion path.
+
+# Adapt the default Python command to the chosen implementation.
+# A dispatch/resume job must finish promptly, persisting human/live waits durably.
+# A green job may mean awaiting_evidence, awaiting_review, or inconclusive.
+# Trusted ingestion must check the structured outcome and every required stage;
+# job success alone never certifies a candidate. Resume via authorized events.
+# Real-user exposure requires separate authorization; use fixtures for dry runs.

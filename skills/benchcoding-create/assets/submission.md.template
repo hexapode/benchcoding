@@ -1,16 +1,20 @@
-# Candidate for independent validation
+# Candidate for independent evaluation
 
 - Experiment/submission ID:
-- Objective/evaluation versions:
-- Source repository identity and full candidate revision:
-- Full baseline revision:
-- Hypothesis and changed code scope:
-- Development results and environment (reported, not verified):
-- Correctness/resource checks:
-- Harness/model/configuration and reproduction instructions:
-- Evidence/trace links with appropriate access:
-- Experiment resource use, costs, payer, and unknown costs:
-- Requested validation allocation:
-- Known limitations and maintenance implications:
+- Objective/evaluation versions, mode, and required stages:
+- Candidate manifest: artifact type, approved source, immutable version/digest, dependencies:
+- Baseline manifest:
+- Full commit IDs for code; frozen exports/snapshots for other artifacts:
+- For live variants: intended/deployed build, configuration, assignment version, and exposure authorization/status:
+- Hypothesis and allowed-change scope:
+- Development evidence and context (reported, not independently verified):
+- Applicable metrics, rubric observations, and required gates:
+- Reproduction commands or review/study procedure:
+- Harness/model/configuration, if used:
+- Evidence links with appropriate access:
+- Resource use, costs, payer, and unknown costs:
+- Requested validation/review allocation and expected observation window:
+- Pending evidence, reviewer, due/check-in time, and next action:
+- Known limitations, tradeoffs, and maintenance implications:
 
-Changes after submission require a new candidate revision and independent evaluation. The owner records verification and integration decisions; passing local CI is not certification.
+Mark fields that do not apply with a reason; do not invent numeric scores or code revisions. Changes after admission require a new immutable candidate and evaluation request. The owner records acceptance decisions. Passing development CI or a dispatch job is not certification, and a verified result is not permission to deploy.

@@ -2,6 +2,13 @@
 
 Read after the protocol when the destination is GitLab. GitLab's equivalent of GitHub Actions is GitLab CI/CD. Use an available connector, authenticated `glab`, or the API for the configured GitLab host; do not assume GitLab.com or a particular paid tier.
 
+## Evaluation mode comes first
+
+Use this provider for source/collaboration and short dispatch/resume jobs when it fits the objective. Human reviews and live studies may use an existing external system; CI coordinates or ingests evidence rather than running the entire evaluation. Read [evaluation modes](evaluation-modes.md). Use the artifact manifest from the protocol, not a fabricated commit for a non-code submission. Provide an issue/form route when a PR/MR is unnecessary.
+
+Adapt the template's default Python command to the implemented adapter. Store waiting states durably and exit; use an authorized follow-up event/job to resume. Successful orchestration can produce `awaiting_evidence`, `awaiting_review`, or `inconclusive`. Ingestion must inspect authenticated stage records and all required gates before publishing verification. A failed job cannot certify success. Live exposure requires the objective's separate authorization and stop/rollback process.
+
+
 ## Source and validation projects
 
 Prefer a private source project plus a private validation/control project whose maintainers are the trusted evaluator owners. Contributors can access development data, issues, and source without gaining control-project write or pipeline permissions. Explicitly choose visibility; GitLab `internal` may expose a project more broadly than the intended team, depending on the instance.
@@ -16,19 +23,19 @@ For a minimal pilot, the owner admits a pinned candidate by committing its reque
 
 ## Trusted CI
 
-Adapt [the CI template](../assets/gitlab-ci.yml.template) in the control project. Use isolated, ephemeral controller runners and a separately isolated candidate worker or evaluator service. The sample uses a runner tag `benchcoding-controller`; provision and verify that runner explicitly. It must supply trusted Python/git dependencies. Disable shared privileged execution and ensure that candidate code never runs directly in this job.
+If using GitLab CI for dispatch/resume, adapt [the CI template](../assets/gitlab-ci.yml.template) in the control project. Use isolated controller runners; executable candidates additionally require a separately isolated worker or evaluator service. The sample uses a runner tag `benchcoding-controller`; provision and verify that runner explicitly. It must supply trusted Python/git dependencies. Disable shared privileged execution and ensure that candidate code never runs directly in this job.
 
 The pipeline accepts manual web/API dispatch only on the protected default branch. CI rules are not authorization: restrict membership, pipeline-variable overrides, token permissions, and who can trigger that project. Verify the server-controlled checkout ref and project identity at ingestion. Read admitted requests from the trusted checkout, not from a variable containing arbitrary URLs or commands.
 
 Never run a fork's MR configuration in a privileged parent project as the acceptance judge. GitLab documents that such pipelines can use the fork's CI configuration with parent-project resources. Keep that path disabled where possible. Do not enable protected-variable access for candidate-controlled pipelines. Review GitLab version/edition behavior rather than assuming all protection settings are available.
 
-The controller implements the protocol and stores durable, provenance-bound evidence. The sample artifact is a diagnostic delivery mechanism, not proof by itself. Restrict artifact visibility on the actual instance and never upload holdout content. A separate trusted publisher or owner verifies project ID, pipeline source, protected ref, config/controller revision, job status, and candidate SHA before updating the board. Failed jobs may have diagnostic artifacts; those cannot certify verification.
+The controller implements the protocol and stores durable, provenance-bound evidence. The sample artifact is a diagnostic delivery mechanism, not proof by itself. Restrict artifact visibility on the actual instance and never upload holdout content. A separate trusted publisher or owner verifies project ID, pipeline source, protected ref, config/controller revision, job status, stage outcome, and candidate manifest before updating the board. Failed jobs may have diagnostic artifacts; those cannot certify verification.
 
 Protect source merges using available approval/status-check features or an explicit owner review of the trusted attestation. A passing ordinary MR pipeline does not replace this. Revalidate integration revisions before baseline promotion.
 
 ## Verify live configuration
 
-Exercise baseline, valid-fixture, invalid-candidate, stale-version, unauthorized dispatch, and timeout paths. Check candidate jobs have neither control-project credentials nor access to answer labels. Verify contributor-provided variables cannot redirect the evaluator/configuration or change the admitted revision. Confirm artifact audience and evidence retention. Mark unsupported/unverified protections as setup blockers rather than claiming the board is operational.
+Exercise selected-mode readiness checks from the protocol, including wait/resume or human review when applicable, plus stale versions and unauthorized dispatch. Use labeled synthetic observations for live dry runs; report untested real integrations. For executable candidates, check jobs have neither control-project credentials nor access to answer labels. Verify contributor-provided variables cannot redirect the evaluator/configuration or change the admitted revision. Confirm artifact audience and evidence retention. Mark unsupported/unverified protections as setup blockers rather than claiming the board is operational.
 
 Official references (verify against the destination version):
 - [Merge request pipelines and forks](https://docs.gitlab.com/ci/pipelines/merge_request_pipelines/)

@@ -1,100 +1,109 @@
-# Leaderboard protocol
+# Benchcoding experiment protocol
 
-This is the shared contract for generated boards. Adapt storage and metric details to the project while preserving the trust boundaries and lifecycle.
+Use this contract for code, designs, configurations, datasets, prompts, and product variants. Preserve ownership, immutable candidate identity, independent evaluation, budgets, and evidence history. Adapt storage, execution, and presentation to the objective; a numeric leaderboard is optional.
 
-## Ownership and repository layout
+## Ownership and infrastructure
 
-A named engineer owns objective changes, budgets, and acceptance. A team owns the resulting production code. Contributors propose experiments; a trusted evaluator measures them; a publisher records verified evidence. These can be simple services or owner-operated workflows, but a candidate process cannot assume evaluator or publisher authority.
+A named engineer owns the objective, budget, and acceptance decision. Name the domain reviewers and the team that will maintain accepted work. Contributors propose experiments; authorized evaluators produce evidence; a trusted publisher records it. A contributor cannot certify their own result or rewrite acceptance rules.
 
-Suggested generated layout:
+Reuse existing experiment platforms, analytics, artifact storage, review tools, and evaluation services. GitHub/GitLab and a Python controller are defaults for repository-based pilots, not requirements. Document an equivalent invocation and evidence boundary when choosing another stack. Do not build services the selected evaluation mode does not need.
+
+Suggested repository layout:
 
 ```text
 AGENTS.md
 skills/benchcoding-contribute/SKILL.md
 skills/benchcoding-maintain/SKILL.md
-skills/benchcoding-create/references/{protocol,github,gitlab}.md
-leaderboard/README.md
+skills/benchcoding-create/references/{protocol,evaluation-modes}.md
+leaderboard/README.md                # collaboration and validation guide
 leaderboard/objective.yaml
-leaderboard/board.md                 # generated view
-leaderboard/submissions/<id>.json    # owner-admitted immutable requests
-leaderboard/results/<run-id>.json    # trusted append-only evidence
-leaderboard/experiments/             # or linked provider issues
-validation/controller.py            # trusted orchestration, never candidate code
-validation/render_board.py
-validation/tests/
+leaderboard/board.md                 # evidence/status view, optionally ranked
+leaderboard/submissions/             # or authorized external request store
+leaderboard/results/                 # or durable protected evidence store
+leaderboard/experiments/             # or linked issues
+validation/                         # adapters, ingestion, renderer, tests as needed
 ```
 
-If contributors can edit the code repository, keep authoritative requests/results and evaluator configuration in a separate protected control repository, or admit them only through a protected owner-reviewed branch. Files merely placed in a `validation/` directory are not isolated. Hidden holdouts never belong in a repository readable by contributors.
+Copy provider references only when used. If contributors can edit the source, authoritative requests, evaluation configuration, and evidence need a separately restricted store or an enforced protected review path. A directory name is not isolation. Restricted acceptance inputs and answers must remain outside contributor access.
 
 ## Objective contract
 
-Use machine-readable fields and document their actual values:
+Declare actual values and explicitly mark fields that do not apply, with a reason. Do not fabricate metrics, datasets, or Git revisions to satisfy a schema.
 
-| Field | Required meaning |
+| Field | Meaning |
 | --- | --- |
-| `schema_version`, `objective_id`, `objective_version` | Stable identity and explicit contract revision. |
-| `owner`, `reviewers`, `maintenance_team` | Actual identities and responsibility. |
-| `visibility`, `source_repository`, `allowed_contributors` | Provider host/project identity and data audience. |
-| `baseline_revision` | Full immutable commit ID, never just a branch name. |
-| `metric` | Name, units, minimize/maximize, aggregation, repetitions, noise/tie policy, and minimum meaningful improvement. |
-| `gates` | Named correctness, completeness, resource, and behavioral constraints with thresholds and operators. |
-| `evaluation_version`, `workload_version`, `environment_id` | Evaluator revision/digest, dataset identity without hidden content, and hardware/runtime class. |
-| `measurement_protocol` | Warmup, timer boundaries, cache policy, synchronization, seeds policy, and comparable baseline replay. |
-| `allowed_changes` | Scope of candidate edits and integration assumptions. |
-| `budget` | Per-experiment and total validation limits, payer, timeouts, concurrency, retries, acceptance-query cap. |
-| `data_policy` | Development inputs, holdout custodian, disclosure policy, artifact audience and retention. |
-| `submission_route`, `validation_route` | How a contributor registers and how an authorized owner dispatches. |
+| `schema_version`, `objective_id`, `objective_version` | Contract identity and revision. |
+| `owner`, `reviewers`, `maintenance_team` | Accountable engineer, domain reviewers, and maintenance responsibility. |
+| `visibility`, `allowed_contributors`, `data_policy` | Access, approved inputs, protected evidence, retention, and disclosure. |
+| `evaluation_mode`, `evaluation_plan` | Offline, human review, live controlled, or hybrid; required stages, their dependencies, authorities, and completion rules. See [evaluation modes](evaluation-modes.md). |
+| `baseline`, `candidate_types`, `allowed_changes` | Immutable baseline manifest, permitted artifact types, edit scope, and integration assumptions. |
+| `metrics` | Zero or more measures with units, direction, aggregation, uncertainty, and minimum meaningful change. |
+| `rubrics`, `gates`, `decision_policy` | Review criteria, mandatory constraints, and how evidence supports a decision. Define reviewer disagreement and tradeoff resolution. No numeric score is required for rubric-only work. |
+| `evaluation_version`, `comparison_context` | Evaluation/rubric revision plus applicable workload, task set, environment, cohort, assignment, observation period, or study identity. |
+| `measurement_protocol` | Applicable timing/repetition rules, review procedure, or study design. Include collection cutoffs, missing-data treatment, and stopping rules where needed. |
+| `budget` | Per-experiment and total limits, payer, compute, wall time, review hours, concurrency, retries, and acceptance-query limits. |
+| `submission_route`, `validation_route` | Registration, admission, evidence collection, review, and who may advance each state. |
+| `rollout_policy` | Authorization and scope for live exposure, monitoring, pause/rollback, and promotion. Setup permission alone does not authorize exposure to users. |
 
-If nondeterminism is material, define repeated trials and uncertainty before inspecting winners. An environmental drift check may invalidate a timing comparison even when CI passes. Define a retention period and durable storage for accepted evidence; expiring CI artifacts alone are insufficient for long-lived baselines.
+For multiple metrics, specify gates and how tradeoffs are decided: for example an owner-reviewed comparison or a Pareto view. Never invent weights or flatten subjective judgments into a universal score. Keep unrelated objectives separate.
 
-## Experiment and submission
+## Immutable candidates and experiments
 
-An experiment groups runs around a hypothesis. Preserve negative findings and attribution. A submission names one immutable candidate plus:
+An experiment groups attempts around a hypothesis. Preserve failed findings, costs, and attribution even when there is no submission.
 
-- Submission/experiment ID, contributor and payer, source repository, full candidate revision and baseline revision.
-- Objective/evaluation versions, allowed-change summary, development results labeled `reported`.
-- Harness/model/configuration, run IDs, reproduction instructions, costs and resource use, trace/evidence references.
-- Requested validation allocation and known limitations.
+Identify every baseline and candidate with a manifest: artifact type, approved source identity, immutable version or content digest, and relevant dependencies. Code uses a full commit ID; designs use a frozen export/version and digest; configurations, prompts, and datasets use versioned snapshots. Live variants also bind the deployed build, configuration, assignment definition, and exposure period. A mutable URL, branch, or screenshot of a changing deployment is insufficient. Restrict artifact access according to its data policy.
 
-Treat request fields as data. Validate identifiers, bound sizes, allowlist provider repository identities, and quote command arguments. Reject arbitrary fetch URLs and shell fragments. Pin once at admission; a later force-push must not alter the evaluated candidate. If that commit becomes unavailable, fail the run rather than fetching the new branch head.
+A submission contains experiment and contributor identities, payer, candidate and baseline manifests, objective/evaluation versions, hypothesis, allowed-change summary, reported development evidence, reproduction or review instructions, costs (including unknowns), and requested validation resources. Include any required live-exposure authorization separately.
 
-## Lifecycle
+Validate request identifiers and source allowlists, bound artifact sizes, and treat supplied paths/commands/content as untrusted data. Pin at admission; later source changes require a new candidate. If an admitted artifact disappears, report an error rather than substituting the current version. Do not fetch arbitrary contributor URLs with privileged credentials.
 
-Experiments: `proposed → funded → running → completed|stopped`. Completed experiments may have no submission.
+## Lifecycle and delayed work
 
-Submissions: `submitted → queued → evaluating → verified|rejected|error`. `verified → accepted` requires integration review and owner decision. `stale` identifies evidence no longer eligible for the current cohort; `invalidated` records a discovered evaluation flaw. Retain prior events and reasons.
+Experiments: `proposed → funded → running → completed|stopped`. Findings-only experiments can complete without a submission.
 
-Only the trusted controller can issue verified/rejected evaluation evidence. The owner can accept or invalidate it with a recorded reason. A contributor may withdraw a candidate, but cannot erase its costs or history. Separate correctness rejection from infrastructure failure. Never publish an error as zero latency.
+Submissions begin `submitted → queued → evaluating`. Required stages may move into `awaiting_evidence` or `awaiting_review` and resume `evaluating` when the authorized evidence or review arrives. Each wait records the missing item, responsible party, due/check-in time, reserved budget, and next action. Persist these states outside a CI process; do not hold a runner open for weeks.
 
-## Trusted evaluation adapter
+Evaluation outcomes:
 
-The CI templates invoke this generated interface:
+- `verified`: evidence is complete and authentic, required gates passed, and the contract's evidentiary standard was met. This does not by itself mean an improvement or approval to ship.
+- `rejected`: a candidate fails a required criterion, with evidence.
+- `inconclusive`: the observation window closed or review completed without enough evidence to decide. Record uncertainty or unresolved disagreement; do not present it as a pass or an infrastructure error.
+- `error`: infrastructure, provenance, or collection failed; retain diagnostics and actual costs.
+- `stopped`: an authorized stop or predeclared budget/stopping rule ended the evaluation before completion.
+
+`verified → accepted` requires the owner's recorded integration/product decision. `stale` marks evidence no longer eligible for the current comparison; `invalidated` records an evaluation flaw. Preserve events and reasons. New evidence after a terminal outcome requires an authorized follow-up attempt linked to the prior one; never silently overwrite it or keep sampling until a favorable answer appears.
+
+A controller records trusted state transitions, including authenticated human decisions and approved external evidence. Only authorized reviewers can attest review stages. The publisher checks authority and provenance rather than trusting strings in candidate artifacts.
+
+## Evaluation adapters
+
+Implement only the adapters required by [the selected modes](evaluation-modes.md). The default repository CLI is:
 
 ```text
 python3 validation/controller.py --submission-id ID --output result.json
 ```
 
-This is a contract to implement, not a supplied generic benchmark. The controller must:
+Other implementations must provide equivalent documented dispatch/resume operations and structured state records. The controller must:
 
-1. Load an admitted request from trusted storage, validate versions and authorization, and reserve resources idempotently. In the starter pilot an owner admits a request via a protected commit before dispatch.
-2. Fetch only the allowed repository at its pinned revision. Keep checkout credentials outside candidate execution and remove them from the exported source. Guard against path traversal and symlinks when transferring artifacts.
-3. Build and execute the candidate in an ephemeral worker with enforced time/memory/CPU limits, no controller credentials, no write access to evaluator/results, and restricted network/filesystem. Do not give it a host Docker socket or shared privileged runner. Builds are untrusted execution too. A container on a privileged shared runner is not an adequate default boundary for arbitrary code; select and document an isolated runner/VM or evaluation service.
-4. Keep correctness labels and score computation in the evaluator. Send only the necessary test input to the candidate process and compare its bounded output outside that process. Candidate-produced scores are never authoritative. Hidden cases necessarily reveal their current input to the program, so limit feedback and prevent persistence/exfiltration; a read-only mounted answer file is not hidden.
-5. Replay the baseline and candidate under the declared measurement protocol. Record gates, raw/repeated measurements or protected references, environment identity, exit state, and actual costs. Never allow candidate files to overwrite controller output.
-6. Write and schema-validate the trusted result. Exit nonzero on rejection, incomplete execution, or infrastructure failure, while retaining diagnostic evidence when safe. The publisher verifies run provenance and exit status before updating the board.
+1. Load the admitted request from trusted storage and validate identity, versions, stage dependencies, authorization, and budget. Reserve resources atomically and use durable attempt/event keys to prevent duplicate dispatch or exposure.
+2. Resolve the pinned artifacts. Keep source-access credentials outside candidate execution. Guard artifact transfers against path traversal and symlinks.
+3. Execute, route for review, or ingest external observations according to the plan. When executing untrusted code, use an ephemeral isolated worker/service with enforced limits, no controller credentials or writable evaluator/results, and restricted network/filesystem. Builds are untrusted execution too; do not expose a host Docker socket or use a privileged shared runner as the candidate boundary.
+4. Keep acceptance computation, protected answers, and reviewer attestations outside candidate control. Human reviewers receive the agreed task/rubric and pinned materials; live collectors bind observations to the approved variant, cohort, and time window. Candidate-reported scores are never authoritative.
+5. Capture required evidence and costs, then evaluate stage completion. Persist pending states without certifying success. Baseline replay applies to repeatable offline tests; live studies use their declared comparator, and human reviews use their agreed baseline materials and tasks.
+6. Emit a schema-validated state record even when work is pending or unsuccessful, where safe. For the default CLI, use exit zero for a successfully recorded `verified`, `awaiting_evidence`, `awaiting_review`, or `inconclusive` state; use nonzero for rejection, stopped execution, or infrastructure failure. Document equivalent semantics for other adapters. In all cases the ingestion layer checks the record's state and required stages: a green job is never enough to certify a candidate.
 
-Budget reservation must be durable and atomic, with a maximum lease and reconciliation for killed jobs. A CI timeout alone is not a spending limit. No automatic retries without a bound. For a minimal pilot, serialize validation and use an owner-maintained reservation ledger; do not pretend job concurrency accounts for money.
+A process killed without a trustworthy state record produces an infrastructure error. Reconcile reservations after a crash or expired lease. Track elapsed study duration separately from active compute/reviewer spend; waiting does not justify charging an idle runner. Use bounded retries. A serialized pilot may use a durable owner-managed ledger; CI concurrency alone does not enforce money or exposure limits.
 
-## Result and ranking rules
+## Evidence and board views
 
-A trusted record contains: schema version; submission ID; repository and candidate revision; baseline revision; objective/evaluation/workload versions; environment ID; controller revision; provider project/workflow/run/attempt identity; timestamps; terminal state; metrics with units and sample counts; every gate and its measured value/threshold; resource use and cost with currency or explicit unknown values; evidence URI/digest; and a reason for rejection/error. Evidence references must respect the workload's data policy.
+Trusted records include schema version; submission/attempt/stage identity; candidate and baseline manifests; contract/evaluation versions and comparison context; producing evaluator or reviewer identity; trusted run/event provenance; timestamps and state; applicable metrics with sample sizes and uncertainty, rubric judgments, and required gate results; actual/unknown costs; protected evidence references/digests; and reasons or pending next actions. For human review, record the rubric version, reviewer authority, decision, and rationale. For live studies, record assignment and observation versions, exposure interval, collection completeness, and the declared analysis.
 
-Validate against a strict schema. Reject absent gates, unknown status values, NaN/infinity, type mismatches, unexpected versions, and missing provenance. Verify provenance via trusted provider/service identity, not strings supplied inside the candidate artifact. Record corrections as new events rather than overwriting evidence.
+Validate required fields by mode and stage. Pending evidence may be absent only when the record identifies what is missing. Reject malformed/nonfinite numeric values, invented authorities, mismatched artifact identities, and unrecognized states. Verify provenance against authenticated provider, reviewer, or service records, not contributor-provided identity strings. Store corrections as new events.
 
-Rank only verified or accepted entries with all gates passing and identical `(objective_version, evaluation_version, workload_version, environment_id, baseline_revision, measurement_protocol)` comparison keys. Use the declared metric direction and tie/noise policy. Preserve the distinction between verified and integrated. Show reported results in a separate section. A new baseline creates a new cohort until eligible candidates are replayed.
+Show hypotheses, attempts, evidence, costs, ownership, and pending work for every objective. Rank only comparable verified/accepted results when the contract defines a meaningful ordering. The comparison context must explicitly establish compatibility; cohort IDs in a randomized study need not be identical, but assignment and analysis must justify comparison. Human rubric decisions and multi-objective tradeoffs can use side-by-side evidence without rankings. Uncertainty can leave candidates tied or unordered.
 
-Generate Markdown/JSON from trusted records, with code/evidence links, attribution, costs, and current state. Use a narrow publication identity in a separate job/service that does not execute candidate code. Avoid automatic HTML injection from experiment titles or arbitrary artifact links. Keep the company's discovery catalog separate from per-objective rankings.
+Changing a baseline, rubric, dataset, environment, or live study design creates a new comparison context. Replay where meaningful; otherwise mark prior evidence as historical and plan a new study. Do not pretend a past cohort can be replayed. Render contributor descriptions as text and publish only through an identity that does not execute candidate artifacts. Preserve evidence durably beyond CI artifact expiry.
 
-## Readiness checks
+## Readiness
 
-Operational means a live provider run has evaluated a pinned baseline/candidate, rejected an invalid candidate, published provenance-checked evidence, and enforced the configured controls. Verify role separation with a contributor-level identity where feasible. Document any isolation assumptions that could not be tested. Synthetic demonstration data must never appear as a measured production result.
+Distinguish `scaffolded`, `locally validated`, and `operational`. Operational means the selected adapters, access controls, durable evidence, and board updates work in the destination; it does not mean the objective has improved. Exercise the selected mode with labeled fixtures: pass/fail for offline, authorized/unauthorized and conflicting reviews for human, or dispatch/wait/resume/stop for live. A dry run can validate orchestration without authorizing production exposure. Report real live integration, review, or data-access steps that remain untested; fixtures are not real study results.

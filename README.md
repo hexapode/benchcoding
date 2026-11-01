@@ -13,7 +13,7 @@ The manifesto argues for applying Benchcoding across software, from code quality
 
 ## Start your own leaderboard
 
-Point a coding agent at [LEADERBOARDS.md](LEADERBOARDS.md). The repository includes skills to create a board, contribute experiments, and manage independent validation, with GitHub Actions and GitLab CI setup guides and contributor instruction templates. The setup agent adapts the evaluator to your objective before activating validation.
+Point a coding agent at [LEADERBOARDS.md](LEADERBOARDS.md). The repository includes skills to create a workspace, contribute experiments, and manage automated tests, human reviews, live controlled studies, or hybrid evaluation. The setup agent chooses the evaluation method first, reuses existing tools, and builds the required infrastructure and contributor instructions. GitHub Actions and GitLab CI are optional starters. Pending and inconclusive evidence stay visible; a numeric ranking is not required.
 
 ## Manifesto implementation
 

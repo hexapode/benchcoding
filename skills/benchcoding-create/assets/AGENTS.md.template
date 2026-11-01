@@ -1,27 +1,29 @@
-# Contributing to this leaderboard
+# Contributing to this objective
 
-This repository coordinates experiments for {{OBJECTIVE_NAME}}. The accountable owner is {{OWNER}}; accepted code is maintained by {{MAINTENANCE_TEAM}}.
+This workspace coordinates experiments for {{OBJECTIVE_NAME}}. The accountable engineer is {{OWNER}}; accepted work is maintained by {{MAINTENANCE_TEAM}}.
 
-Read `leaderboard/README.md` and `leaderboard/objective.yaml` first. For experiments follow `skills/benchcoding-contribute/SKILL.md`. Owners operating validation should follow `skills/benchcoding-maintain/SKILL.md`.
+Read `leaderboard/README.md` and `leaderboard/objective.yaml` first. For experiments use `skills/benchcoding-contribute/SKILL.md`; for authorized evaluation and board operations use `skills/benchcoding-maintain/SKILL.md`. Follow the objective's automated, human, live, or hybrid evaluation plan.
 
-## Before running agents
+## Register and coordinate
 
-Look at `leaderboard/board.md` and the linked experiments. Register your hypothesis through {{EXPERIMENT_ROUTE}}, linking related work and identifying your team, payer, starting baseline, and authorized budget. Check active claims and coordinate overlapping attempts through the collaboration route in `leaderboard/README.md`. Reuse failed findings instead of repeating an approach without a reason. Use only the data and resources allowed by the objective.
+Read `leaderboard/board.md` and linked experiments. Register through {{EXPERIMENT_ROUTE}}, identifying related work, team, payer, baseline manifest, and authorized budget. Check active claims and coordinate overlapping attempts through the collaboration guide. Use failed findings rather than repeating them without a reason. Access only approved data and resources.
 
-If the evaluation rules are unclear or cannot judge your proposed change, send the owner a concrete example and the missing decision before spending validation budget. Do not invent acceptance rules or silently change the evaluator. Record handoffs in the experiment with the current revision, findings, remaining budget, and next question.
+If the rules cannot judge your proposed change, send the owner a concrete ambiguous case and the missing decision. Do not invent acceptance criteria. Record handoffs with the current artifact, findings, remaining budget, and next question.
 
-## Submit evidence
+## Submit and wait for evidence
 
-Work from the recorded baseline in an isolated checkout. Record the harness/model, configuration, revisions, development evaluation, resource use, and findings. Local measurements are reported claims. Submit a pinned candidate through {{SUBMISSION_ROUTE}} and request validation through {{VALIDATION_ROUTE}}. An authorized owner admits it to the trusted queue. Record useful failures even when there is no code to merge.
+Use an isolated checkout for code or the documented versioned workspace for other artifacts. Record immutable versions/digests, methods, reported findings, and costs. Submit through {{SUBMISSION_ROUTE}} and request evaluation through {{VALIDATION_ROUTE}}. The authorized owner/dispatcher admits the request. Preserve useful failures even without a code change.
 
-Do not change the official evaluator, holdout, result records, or generated leaderboard as part of a candidate. Evaluator fixes go through separate owner review and versioning. Never make checks easier or omit difficult cases to improve a score. Do not expose restricted inputs, labels, credentials, or traces in issues or artifacts.
+Do not alter the official evaluator/rubric, protected data, evidence, or generated board to certify your candidate. Changes to acceptance rules need separate owner review and versioning. Do not weaken checks, omit difficult cases, or expose restricted data in issues or artifacts.
 
-Stop when your allocation is exhausted. Do not repeatedly query acceptance evaluation or launch extra runs to get a favorable score. A verified result still requires integration review. Production changes and baseline promotion follow the owner's review process.
+Human review and live measurements may remain pending. Follow the documented wait/resume and stopping rules; do not treat a successful dispatch as a verified outcome. Live exposure requires its own authorization. Stop at the budget limit or owner instruction, and do not repeatedly query hidden evaluations or extend studies to seek a favorable result. Acceptance, deployment, and baseline changes follow the owner's process.
 
-## Local commands
+## Development procedure
 
-{{DEVELOPMENT_BASELINE_COMMAND}}
+{{DEVELOPMENT_PROCEDURE}}
 
-{{DEVELOPMENT_CANDIDATE_COMMAND}}
+## Review or study handoff, when applicable
 
-These commands use development data. Hidden acceptance evaluation runs through the trusted validation route, not the contributor workspace.
+{{REVIEW_OR_STUDY_ROUTE}}
+
+Replace these placeholders with actual commands or procedures for the selected mode. Keep acceptance evidence and reviewer decisions on the trusted route, outside contributor control.

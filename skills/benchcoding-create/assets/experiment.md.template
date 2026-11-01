@@ -1,14 +1,19 @@
 # Experiment: <hypothesis>
 
 - Objective and contract/evaluation versions:
-- Contributor/team and payer:
-- Baseline repository and full revision:
+- Evaluation mode and required stages:
+- Contributor/team, domain reviewers, and payer:
+- Immutable baseline manifest (artifact type, approved source, version/digest):
 - Hypothesis and expected mechanism:
 - Related/duplicate attempts and what this adds:
-- Planned harness/model and allowed resources:
-- Requested budget, time limit, and stopping condition:
+- Planned artifact changes, harness/model if used, and allowed resources:
+- Development evaluation or review procedure:
+- Metrics/rubrics, mandatory constraints, and tradeoffs:
+- Requested budget, time/observation window, and stopping condition:
 - Funding allocation/authorization reference:
+- Live-exposure authorization, if applicable (separate from setup/funding):
+- Pending owner decisions or access needs:
 
-## Findings (update as work proceeds)
+## Findings and handoff
 
-Record run revisions, development measurements and environment, failures, costs (or unknowns), and lessons. Link submissions if any. Do not include holdout data or secrets.
+Record immutable attempt identities, evidence and its context, reviewer/task versions where applicable, failures, costs (including unknowns), and lessons. Link submissions if any. State current status, next action, responsible person, and remaining budget. Mark offline estimates, synthetic fixtures, and incomplete studies clearly. Preserve inconclusive findings. Do not include restricted inputs, participant data, or secrets.

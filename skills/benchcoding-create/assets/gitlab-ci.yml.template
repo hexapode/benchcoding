@@ -24,7 +24,7 @@ validate_entry:
           raise SystemExit("Invalid submission ID")
       PYCODE
     - |
-      echo 'SETUP REQUIRED: implement and verify isolated evaluation, durable evidence, and budget reservation.' >&2
+      echo 'SETUP REQUIRED: implement and verify the selected evaluation adapters, durable state/evidence, and budget accounting.' >&2
       exit 1
     # After setup, remove the guard above and enable the controller invocation:
     # - python3 validation/controller.py --submission-id "$SUBMISSION_ID" --output result.json
@@ -35,3 +35,10 @@ validate_entry:
     expire_in: 7 days
   # These artifacts are diagnostics until provenance is checked by trusted ingestion.
   # Archive accepted evidence durably, with access matching the objective's data policy.
+
+# Adapt the default Python command to the chosen implementation.
+# A dispatch/resume job must finish promptly, persisting human/live waits durably.
+# A green job may mean awaiting_evidence, awaiting_review, or inconclusive.
+# Trusted ingestion must check the structured outcome and every required stage;
+# job success alone never certifies a candidate. Resume via authorized events.
+# Real-user exposure requires separate authorization; use fixtures for dry runs.
