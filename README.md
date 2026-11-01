@@ -22,3 +22,7 @@ Run `python3 -m http.server 8765 --directory docs`, then visit http://localhost:
 In repository Settings → Pages, select GitHub Actions as the source. Push to `main` or run the Pages workflow. Expected project URL: https://hexapode.github.io/benchcoding/.
 
 The fictional benchmark values in the article are illustrative. Source links are included beside the relevant claims. No FTP credentials or private conversation transcripts belong in this repository.
+
+## Editorial guide
+
+Read [writting.md](writting.md) before revising reader-facing text. It records the user’s preferences, examples, and sources, and should grow with future feedback.
