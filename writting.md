@@ -28,7 +28,7 @@ Rejected:
 
 > An engineer owns the objective. Agents explore ways to improve it. The hard part is knowing whether they have.
 
-Current revision:
+Earlier revision (subsequently tightened):
 
 > I’m interested in what happens when an engineer takes responsibility for a benchmark and lets people across the company send agents to work on it.
 
@@ -58,7 +58,7 @@ The user specifically identified this as a useful anchor. Keep it tied to concre
 - Preserve the parser example and the difference between a reported score and an accepted improvement. Label its numbers as invented.
 - Compare workflows by who defines the work, what agents receive, and how results are accepted. Do not present Scrum, IDEs, autocomplete, and agent workflows as a historical ladder.
 - Keep observed public competitions separate from the hypothesis about internal adoption. Link claims to sources that actually support them.
-- End the pilot with conditions for continuing, chosen before the results: accepted production improvement, total cost including human work and setup, and comparison with task delegation. Label suggested numerical thresholds as proposals.
+- End the pilot with conditions for continuing, chosen before the results: accepted production improvement, total cost including human work and setup, and comparison with capable open-ended agent investigation. Label suggested numerical thresholds as proposals.
 - Use first person for the user's proposals and judgments. Never invent experiments they ran, clients they served, anecdotes, quotations, or personal experience to make the prose seem human.
 
 ## Revision pass
@@ -89,3 +89,12 @@ Reviewed November 1, 2026. These sources informed the editing approach; they are
 - Replace the four-era framing with a workflow comparison.
 - Preserve the accountability sentence above as a deliberate exception to the preference against slogans.
 - Keep this file open to revision as more examples and preferences emerge.
+
+### Further argument revision, November 1, 2026
+
+- Use a strong comparison: an engineer already giving agents open-ended investigations, with normal tools and freedom to explore alternatives. Do not imply that this workflow requires predetermined implementation tasks.
+- Separate the within-team maintained-search hypothesis from the incremental benefit of cross-team participation. Test them in stages with comparable total resources.
+- Explain cheaper experimentation as the economic hypothesis motivating wider search; do not claim proven cost savings.
+- Include discovery as well as verification. Mark unexpected solutions in the parser scenario as fictional, not personal experience or measured evidence.
+- Define the numerator of any improvement-per-dollar metric. Do not treat percentage improvements across unrelated components as interchangeable business value.
+- Describe the proposed process directly. Reserve hedging for uncertain benefits, and remove prose that merely repeats an interactive result or caption.
