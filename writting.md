@@ -84,7 +84,7 @@ Apply these checks across the page:
 - **Read the whole section for cumulative repetition.** Individually reasonable caveats can bury the argument when repeated in the introduction, diagram, paragraph, and conclusion. Preserve standalone captions and accessible explanations, but let the surrounding prose move on.
 - **Keep the author’s judgment distinct from evidence.** “I would test…” can introduce a proposal. It must not become an invented story about work the author has done. Retain fictional labels and provisional pilot thresholds.
 - **Do not simulate informality.** Adding “honestly,” rhetorical questions, slang, or deliberate roughness does not make vague copy more useful. Improve the information and the connection between sentences.
-- **Respect deliberate user choices.** The user supplied “Stop VibeCoding, start Bench Coding” as the headline and asked to retain the accountability quotation. Do not remove either during a general anti-slogan pass.
+- **Respect deliberate user choices.** The user supplied “Stop Vibecoding, start BenchCoding” as the headline and asked to retain the accountability quotation. Do not remove either during a general anti-slogan pass.
 
 ## Revision pass
 
