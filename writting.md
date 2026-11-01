@@ -98,3 +98,9 @@ Reviewed November 1, 2026. These sources informed the editing approach; they are
 - Include discovery as well as verification. Mark unexpected solutions in the parser scenario as fictional, not personal experience or measured evidence.
 - Define the numerator of any improvement-per-dollar metric. Do not treat percentage improvements across unrelated components as interchangeable business value.
 - Describe the proposed process directly. Reserve hedging for uncertain benefits, and remove prose that merely repeats an interactive result or caption.
+
+### Tooling section, November 1, 2026
+
+- Frame tooling as a product hypothesis around shared objectives with named engineer accountability, subject to access permissions.
+- Group experiments by hypothesis across coding harnesses. Distinguish company-wide discovery from rankings within comparable objectives and evaluation versions.
+- A pilot can build on GitHub; do not imply that a replacement platform or full autonomy is required. Keep independent evaluation separate from candidate-controlled code.
