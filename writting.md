@@ -143,3 +143,9 @@ Reviewed November 1, 2026. These sources informed the editing approach; they are
 - Make broad ambition tangible: name the change agents can try, evidence that would justify accepting it, and a misleading score to reject. Do not repeat the same generic productivity claim for each domain.
 - Treat broad applicability as the manifesto’s ambition, not demonstrated success in every domain. Human evaluation, delayed outcomes, and multiple measures belong in the workflow; do not imply everything needs a single automatic score.
 - Keep engineer accountability while involving domain owners. Product outcomes need product and user judgment; design needs designers and users. Distinguish offline proxies from live evidence, and keep experiments on users subject to owner approval.
+
+### Reading order and self-reference, November 1, 2026
+
+- Define Benchcoding before showing its diagrams, benchmark tables, or worked examples. Lead with the introduction, then show its range of applications, then work through the parser. A visual should follow the explanation needed to read it.
+- Remove self-referential framing such as “in this manifesto,” “this essay argues,” “as described above,” and “the example below.” State the idea directly or use a descriptive link when navigation is needed. “Benchcoding manifesto” may remain the publication title; do not repeat it as commentary about the text.
+- Check reading order as rendered, including the hero illustration and mobile navigation. Source order and section headings alone do not guarantee that the introduction comes first.
