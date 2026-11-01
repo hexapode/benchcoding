@@ -2,7 +2,7 @@
 
 A single-page illustrated manifesto by Pierre-Loic Doulcet.
 
-The proposal: engineers own measurable objectives, direct agent experiments, understand agent behavior, and independently verify improvements. Public competitions suggest a workflow worth testing inside companies. Internal adoption and performance benefits are hypotheses, not reported results.
+The manifesto proposes keeping an engineering problem open across agent experiments, with an engineer deciding what to try next and what to ship. A fictional parser example explains how colleagues can contribute and how misleading scores are rejected. The pilot tests whether keeping that shared record is worth the work.
 
 ## Files
 

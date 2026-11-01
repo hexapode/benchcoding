@@ -61,6 +61,31 @@ The user specifically identified this as a useful anchor. Keep it tied to concre
 - End the pilot with conditions for continuing, chosen before the results: accepted production improvement, total cost including human work and setup, and comparison with capable open-ended agent investigation. Label suggested numerical thresholds as proposals.
 - Use first person for the user's proposals and judgments. Never invent experiments they ran, clients they served, anecdotes, quotations, or personal experience to make the prose seem human.
 
+## Further rules from the opening rewrite
+
+The user also rejected this more fluent version:
+
+> An engineer manages a continuing search for improvements, using a shared record of experiments that colleagues can contribute to. The proposal has to earn its cost against an engineer already using agents well.
+
+Joining short sentences did not fix it. “Continuing search for improvements” hides the actual work, and “earn its cost” substitutes a judgment for an explanation of what to measure. The opening describes the proposal from a distance before giving the reader a reason to care.
+
+The replacement uses the parser already developed in the manifesto:
+
+> Give agents a slow parser and ask them to make it faster without losing accuracy. An engineer checks the results and chooses the next experiments, keeping a record of failed attempts so colleagues can avoid repeating them.
+
+Apply these checks across the page:
+
+- **Show the work before naming the abstraction.** Start with a slow parser, a repeated decode, or an experiment someone can pick up. Explain “shared objectives” after the reader can picture one. Use existing examples; do not invent personal experience.
+- **Give verbs an object a reader can inspect.** Replace “manage a continuing search” with the actual decision: inspect a patch, stop a duplicate run, fund a cache experiment, or accept a new baseline. Do not mechanically substitute these phrases everywhere.
+- **Cut commentary about the proposal.** Phrases such as “the proposed benefit,” “the additional commitment,” and “a product worth testing” often delay the point. Describe the action and its consequence. State uncertainty where the outcome is uncertain.
+- **Put objections where they can be answered.** Keep the capable-engineer comparison and cost test in the argument and pilot. The opening should not end with a generic promise to prove its worth. Do not repeat that promise after every example or call to action.
+- **Connect sentences through specifics.** A colleague reads the failed cache experiment, avoids repeating it, then tests another document type. That sequence explains the board better than a list of benefits such as coordination, learning, and efficiency.
+- **Use ordinary language around precise measures.** Define the workload, accepted saving, and full cost, then say “milliseconds saved per dollar.” Avoid repeatedly forcing readers through “accepted median processing-time reduction per dollar of total cost.”
+- **Read the whole section for cumulative repetition.** Individually reasonable caveats can bury the argument when repeated in the introduction, diagram, paragraph, and conclusion. Preserve standalone captions and accessible explanations, but let the surrounding prose move on.
+- **Keep the author’s judgment distinct from evidence.** “I would test…” can introduce a proposal. It must not become an invented story about work the author has done. Retain fictional labels and provisional pilot thresholds.
+- **Do not simulate informality.** Adding “honestly,” rhetorical questions, slang, or deliberate roughness does not make vague copy more useful. Improve the information and the connection between sentences.
+- **Respect deliberate user choices.** The user supplied “Stop VibeCoding, start Bench Coding” as the headline and asked to retain the accountability quotation. Do not remove either during a general anti-slogan pass.
+
 ## Revision pass
 
 Read a section aloud and check whether it sounds like someone explaining a thought or someone delivering a sequence of taglines. Check the whole paragraph as well as individual sentences. Vary sentence length as the reasoning requires; do not alternate lengths according to a formula.
@@ -108,3 +133,5 @@ Reviewed November 1, 2026. These sources informed the editing approach; they are
 - Treat Benchcoding as a single static essay at the site root. Omit blog-index navigation and links to an imaginary collection of posts.
 
 - Call the page the Benchcoding manifesto. Include a practical call to action for the repository’s create, contribute, and maintain skills without implying validation is ready before an objective-specific evaluator is tested.
+
+- The user rejected the abstract “continuing search” opening as well as the earlier clipped version. Apply the concrete-work and repetition checks to the entire site, including metadata, diagrams, and the skill-package CTA.
