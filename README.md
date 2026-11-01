@@ -2,7 +2,7 @@
 
 A single-page illustrated manifesto by Pierre-Loic Doulcet.
 
-The manifesto proposes keeping an engineering problem open across agent experiments, with an engineer deciding what to try next and what to ship. A fictional parser example explains how colleagues can contribute and how misleading scores are rejected. The pilot tests whether keeping that shared record is worth the work.
+The manifesto argues for applying Benchcoding across software, from code quality and performance to useful features, retention, design, QA, data pipelines, and reliability. An engineer owns each objective and decides what to try next and what to ship, with input from the relevant product and domain owners. A fictional parser example explains how colleagues can contribute and how misleading scores are rejected. The pilot tests whether keeping that shared record is worth the work.
 
 ## Files
 
