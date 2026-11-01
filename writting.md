@@ -104,3 +104,5 @@ Reviewed November 1, 2026. These sources informed the editing approach; they are
 - Frame tooling as a product hypothesis around shared objectives with named engineer accountability, subject to access permissions.
 - Group experiments by hypothesis across coding harnesses. Distinguish company-wide discovery from rankings within comparable objectives and evaluation versions.
 - A pilot can build on GitHub; do not imply that a replacement platform or full autonomy is required. Keep independent evaluation separate from candidate-controlled code.
+
+- Treat Benchcoding as a single static essay at the site root. Omit blog-index navigation and links to an imaginary collection of posts.

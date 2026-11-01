@@ -1,17 +1,17 @@
 # Benchcoding
 
-An illustrated essay and small personal blog by Pierre-Loic Doulcet.
+A single-page illustrated essay by Pierre-Loic Doulcet.
 
 The proposal: engineers own measurable objectives, direct agent experiments, understand agent behavior, and independently verify improvements. Public competitions suggest a workflow worth testing inside companies. Internal adoption and performance benefits are hypotheses, not reported results.
 
 ## Files
 
-- `docs/index.html`: blog index.
-- `docs/blog/benchcoding/index.html`: illustrated article and interactive teaching example.
+- `docs/index.html`: illustrated essay and interactive teaching example.
+- `docs/blog/benchcoding/index.html`: redirect for existing article links, preserving fragments and query parameters.
 - `docs/styles.css`: responsive typography and layout.
 - `.github/workflows/pages.yml`: publishes only `docs/` to GitHub Pages.
 
-No dependencies, build step, external fonts, analytics, or backend. All figures are inline SVG. Navigation uses relative paths for GitHub project pages. The article remains readable without JavaScript.
+No dependencies, build step, external fonts, analytics, or backend. Figures use HTML, CSS, and inline SVG. The essay lives at the site root; in-page links navigate its sections. The article remains readable without JavaScript.
 
 ## Preview
 
