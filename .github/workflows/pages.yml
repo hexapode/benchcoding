@@ -1,4 +1,4 @@
-name: Deploy blog to GitHub Pages
+name: Deploy manifesto to GitHub Pages
 on:
   push:
     branches: [main]

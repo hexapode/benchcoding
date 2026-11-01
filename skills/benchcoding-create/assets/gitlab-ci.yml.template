@@ -1,0 +1,37 @@
+# Install in a restricted validation/control project.
+# Setup scaffold: a domain evaluator and trusted publisher must be implemented.
+workflow:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true" && ($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api")'
+    - when: never
+stages:
+  - validate
+variables:
+  SUBMISSION_ID:
+    value: ""
+    description: "ID of an owner-admitted immutable request"
+validate_entry:
+  stage: validate
+  tags:
+    - benchcoding-controller
+  resource_group: leaderboard-validation
+  timeout: 30m
+  script:
+    - |
+      python3 - <<'PYCODE'
+      import os, re
+      if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}", os.environ["SUBMISSION_ID"]):
+          raise SystemExit("Invalid submission ID")
+      PYCODE
+    - |
+      echo 'SETUP REQUIRED: implement and verify isolated evaluation, durable evidence, and budget reservation.' >&2
+      exit 1
+    # After setup, remove the guard above and enable the controller invocation:
+    # - python3 validation/controller.py --submission-id "$SUBMISSION_ID" --output result.json
+  artifacts:
+    when: always
+    paths:
+      - result.json
+    expire_in: 7 days
+  # These artifacts are diagnostics until provenance is checked by trusted ingestion.
+  # Archive accepted evidence durably, with access matching the objective's data policy.

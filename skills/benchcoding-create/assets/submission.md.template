@@ -1,0 +1,16 @@
+# Candidate for independent validation
+
+- Experiment/submission ID:
+- Objective/evaluation versions:
+- Source repository identity and full candidate revision:
+- Full baseline revision:
+- Hypothesis and changed code scope:
+- Development results and environment (reported, not verified):
+- Correctness/resource checks:
+- Harness/model/configuration and reproduction instructions:
+- Evidence/trace links with appropriate access:
+- Experiment resource use, costs, payer, and unknown costs:
+- Requested validation allocation:
+- Known limitations and maintenance implications:
+
+Changes after submission require a new candidate revision and independent evaluation. The owner records verification and integration decisions; passing local CI is not certification.

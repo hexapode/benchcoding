@@ -1,4 +1,4 @@
-# Working on this blog
+# Working on this manifesto
 
 Read `writting.md` before drafting or editing reader-facing text. It records the user's editorial preferences and sources. Follow current user instructions when they differ from that guide, and record new explicit preferences in its preference log.
 

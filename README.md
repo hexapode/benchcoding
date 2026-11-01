@@ -1,17 +1,23 @@
 # Benchcoding
 
-A single-page illustrated essay by Pierre-Loic Doulcet.
+A single-page illustrated manifesto by Pierre-Loic Doulcet.
 
 The proposal: engineers own measurable objectives, direct agent experiments, understand agent behavior, and independently verify improvements. Public competitions suggest a workflow worth testing inside companies. Internal adoption and performance benefits are hypotheses, not reported results.
 
 ## Files
 
-- `docs/index.html`: illustrated essay and interactive teaching example.
+- `docs/index.html`: illustrated manifesto and interactive teaching example.
 - `docs/blog/benchcoding/index.html`: redirect for existing article links, preserving fragments and query parameters.
 - `docs/styles.css`: responsive typography and layout.
 - `.github/workflows/pages.yml`: publishes only `docs/` to GitHub Pages.
 
-No dependencies, build step, external fonts, analytics, or backend. Figures use HTML, CSS, and inline SVG. The essay lives at the site root; in-page links navigate its sections. The article remains readable without JavaScript.
+## Start your own leaderboard
+
+Point a coding agent at [LEADERBOARDS.md](LEADERBOARDS.md). The repository includes skills to create a board, contribute experiments, and manage independent validation, with GitHub Actions and GitLab CI setup guides and contributor instruction templates. The setup agent adapts the evaluator to your objective before activating validation.
+
+## Manifesto implementation
+
+No dependencies, build step, external fonts, analytics, or backend. Figures use HTML, CSS, and inline SVG. The manifesto lives at the site root; in-page links navigate its sections. The article remains readable without JavaScript.
 
 ## Preview
 

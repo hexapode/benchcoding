@@ -1,0 +1,52 @@
+# Install in the restricted validation/control repository, not the candidate branch.
+# Setup scaffold: replace the fail-closed guard only after implementing the protocol.
+name: Validate leaderboard entry
+on:
+  workflow_dispatch:
+    inputs:
+      submission_id:
+        description: ID of an owner-admitted immutable request
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: leaderboard-validation
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Validate request identifier
+        env:
+          SUBMISSION_ID: ${{ inputs.submission_id }}
+        run: |
+          python3 - <<'PYCODE'
+          import os, re
+          if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}", os.environ["SUBMISSION_ID"]):
+              raise SystemExit("Invalid submission ID")
+          PYCODE
+      - name: Checkout the trusted controller revision
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init trusted
+          git -C trusted remote add origin "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git"
+          # The token is command-scoped; it is not persisted in git configuration.
+          AUTH=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')
+          git -C trusted -c "http.extraheader=AUTHORIZATION: basic $AUTH" fetch --depth=1 origin "$GITHUB_SHA"
+          unset AUTH
+          git -C trusted checkout --detach FETCH_HEAD
+      - name: Require completed evaluator integration
+        run: |
+          echo 'SETUP REQUIRED: implement and verify isolated evaluation, durable evidence, and budget reservation.' >&2
+          exit 1
+      # After setup, remove the guard above and enable this controller step.
+      # - name: Evaluate admitted submission
+      #   working-directory: trusted
+      #   env:
+      #     SUBMISSION_ID: ${{ inputs.submission_id }}
+      #   run: python3 validation/controller.py --submission-id "$SUBMISSION_ID" --output result.json
+      # Publish only through the separately configured trusted ingestion path.

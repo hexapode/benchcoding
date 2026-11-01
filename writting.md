@@ -1,6 +1,6 @@
 # Writing notes
 
-This is the evolving editorial guide for the Benchcoding blog. Keep the filename `writting.md`. Apply it when drafting or revising the article, home page, captions, metadata, and other reader-facing text. Add concrete examples as we find more preferences; do not turn every preference into an absolute ban.
+This is the evolving editorial guide for the Benchcoding manifesto. Keep the filename `writting.md`. Apply it when drafting or revising the article, home page, captions, metadata, and other reader-facing text. Add concrete examples as we find more preferences; do not turn every preference into an absolute ban.
 
 ## What we are aiming for
 
@@ -106,3 +106,5 @@ Reviewed November 1, 2026. These sources informed the editing approach; they are
 - A pilot can build on GitHub; do not imply that a replacement platform or full autonomy is required. Keep independent evaluation separate from candidate-controlled code.
 
 - Treat Benchcoding as a single static essay at the site root. Omit blog-index navigation and links to an imaginary collection of posts.
+
+- Call the page the Benchcoding manifesto. Include a practical call to action for the repository’s create, contribute, and maintain skills without implying validation is ready before an objective-specific evaluator is tested.

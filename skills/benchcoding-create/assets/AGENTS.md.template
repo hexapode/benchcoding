@@ -1,0 +1,25 @@
+# Contributing to this leaderboard
+
+This repository coordinates experiments for {{OBJECTIVE_NAME}}. The accountable owner is {{OWNER}}; accepted code is maintained by {{MAINTENANCE_TEAM}}.
+
+Read `leaderboard/README.md` and `leaderboard/objective.yaml` first. For experiments follow `skills/benchcoding-contribute/SKILL.md`. Owners operating validation should follow `skills/benchcoding-maintain/SKILL.md`.
+
+## Before running agents
+
+Look at `leaderboard/board.md` and the linked experiments. Register your hypothesis through {{EXPERIMENT_ROUTE}}, linking related work and identifying your team, payer, starting baseline, and authorized budget. Reuse failed findings instead of repeating an approach without a reason. Use only the data and resources allowed by the objective.
+
+## Submit evidence
+
+Work from the recorded baseline in an isolated checkout. Record the harness/model, configuration, revisions, development evaluation, resource use, and findings. Local measurements are reported claims. Submit a pinned candidate through {{SUBMISSION_ROUTE}} and request validation through {{VALIDATION_ROUTE}}. An authorized owner admits it to the trusted queue. Record useful failures even when there is no code to merge.
+
+Do not change the official evaluator, holdout, result records, or generated leaderboard as part of a candidate. Evaluator fixes go through separate owner review and versioning. Never make checks easier or omit difficult cases to improve a score. Do not expose restricted inputs, labels, credentials, or traces in issues or artifacts.
+
+Stop when your allocation is exhausted. Do not repeatedly query acceptance evaluation or launch extra runs to get a favorable score. A verified result still requires integration review. Production changes and baseline promotion follow the owner's review process.
+
+## Local commands
+
+{{DEVELOPMENT_BASELINE_COMMAND}}
+
+{{DEVELOPMENT_CANDIDATE_COMMAND}}
+
+These commands use development data. Hidden acceptance evaluation runs through the trusted validation route, not the contributor workspace.
